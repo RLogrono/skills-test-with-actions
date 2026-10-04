@@ -15,7 +15,9 @@ jobs:
 
     steps:
       - name: Show github object
-        run: echo ${{ toJSON( github ) }}
+        env:
+          GITHUB_CONTEXT: ${{ toJSON( github ) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Set up Python
