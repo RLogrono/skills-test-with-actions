@@ -1,4 +1,5 @@
 name: Python Coverage
+run-name: Build ${{ github.run_number }} por ${{ github.actor }} en ${{ github.ref_name }}
 
 on:
   pull_request:
@@ -13,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show github object
+        env:
+          GITHUB_CONTEXT: ${{ toJSON( github ) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Set up Python
